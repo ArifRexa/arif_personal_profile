@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Python Projects Showcase with Gallery</title>
+    <style>
+        :root {
+            --primary-color: #306998;
+            --secondary-color: #FFD43B;
+            --bg-color: #f4f4f4;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+        }
+
+        body {
+            font-family: 'Roboto', Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        .projects-section {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 2rem;
+        }
+
+        h2 {
+            text-align: center;
+            color: var(--primary-color);
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        h2::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 4px;
+            background-color: var(--secondary-color);
+            margin: 0.5rem auto;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background-color: var(--card-bg);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .project-image-container {
+            position: relative;
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .project-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .project-image-container:hover .project-image {
+            transform: scale(1.05);
+        }
+
+        .project-content {
+            padding: 1.5rem;
+        }
+
+        .project-title {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin: 0 0 1rem;
+        }
+
+        .project-description {
+            color: var(--text-color);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .project-links {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .github-link, .demo-link {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .github-link {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .github-link:hover {
+            background-color: #254e77;
+        }
+
+        .demo-link {
+            background-color: var(--secondary-color);
+            color: var(--primary-color);
+        }
+
+        .demo-link:hover {
+            background-color: #ffc905;
+        }
+
+        .technologies {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .tech-tag {
+            background-color: #e0e0e0;
+            color: var(--primary-color);
+            padding: 0.2rem 0.5rem;
+            border-radius: 3px;
+            font-size: 0.8rem;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+        }
+
+        .modal-content {
+            position: relative;
+            margin: auto;
+            padding: 0;
+            width: 90%;
+            max-width: 1200px;
+            height: 90%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-image {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        .close {
+            color: #fff;
+            position: absolute;
+            top: 10px;
+            right: 25px;
+            font-size: 35px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .prev, .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            padding: 16px;
+            margin-top: -50px;
+            color: white;
+            font-weight: bold;
+            font-size: 20px;
+            transition: 0.6s ease;
+            border-radius: 0 3px 3px 0;
+            user-select: none;
+            -webkit-user-select: none;
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        .next {
+            right: 0;
+            border-radius: 3px 0 0 3px;
+        }
+
+        .prev:hover, .next:hover {
+            background-color: rgba(0, 0, 0, 0.9);
+        }
+
+        @media (max-width: 768px) {
+            .projects-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .projects-section {
+                padding: 1rem;
+            }
+
+            .project-card {
+                border-radius: 10px;
+            }
+
+            .project-image-container {
+                height: 150px;
+            }
+
+            .project-title {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section class="projects-section">
+        <h2>My Python Projects</h2>
+        <div class="projects-grid">
+            <div class="project-card">
+                <div class="project-image-container" onclick="openModal(0)">
+                    <img src="https://i.pinimg.com/564x/03/39/34/03393468c89b1b7da49df055b6174a83.jpg" alt="AI Chatbot" class="project-image">
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">AI Chatbot</h3>
+                    <p class="project-description">An intelligent chatbot powered by natural language processing, capable of understanding and responding to user queries in real-time.</p>
+                    <div class="technologies">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">NLTK</span>
+                        <span class="tech-tag">TensorFlow</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/yourusername/ai-chatbot" class="github-link">GitHub</a>
+                        <a href="#" class="demo-link">Live Demo</a>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-image-container" onclick="openModal(1)">
+                    <img src="https://via.placeholder.com/400x200?text=Data+Visualizer+1" alt="Data Visualizer" class="project-image">
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Data Visualizer</h3>
+                    <p class="project-description">A powerful tool for creating interactive and insightful data visualizations from various data sources.</p>
+                    <div class="technologies">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Matplotlib</span>
+                        <span class="tech-tag">Plotly</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/yourusername/data-visualizer" class="github-link">GitHub</a>
+                        <a href="#" class="demo-link">Live Demo</a>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-image-container" onclick="openModal(2)">
+                    <img src="https://via.placeholder.com/400x200?text=Web+Scraper+1" alt="Web Scraper" class="project-image">
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Web Scraper</h3>
+                    <p class="project-description">An efficient web scraping tool designed to extract and process large amounts of data from websites.</p>
+                    <div class="technologies">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">BeautifulSoup</span>
+                        <span class="tech-tag">Scrapy</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/yourusername/web-scraper" class="github-link">GitHub</a>
+                        <a href="#" class="demo-link">Live Demo</a>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-image-container" onclick="openModal(3)">
+                    <img src="https://via.placeholder.com/400x200?text=Encryption+Tool+1" alt="Encryption Tool" class="project-image">
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Encryption Tool</h3>
+                    <p class="project-description">A robust encryption tool that provides secure file and message encryption using advanced cryptographic algorithms.</p>
+                    <div class="technologies">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Cryptography</span>
+                        <span class="tech-tag">PyOpenSSL</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/yourusername/encryption-tool" class="github-link">GitHub</a>
+                        <a href="#" class="demo-link">Live Demo</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div id="imageModal" class="modal">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <div class="modal-content">
+            <img id="modalImage" class="modal-image" src="" alt="Project Image">
+            <a class="prev" onclick="changeImage(-1)">&#10094;</a>
+            <a class="next" onclick="changeImage(1)">&#10095;</a>
+        </div>
+    </div>
+
+    <script>
+        const projects = [
+            {
+                name: "AI Chatbot",
+                images: [
+                    "https://i.pinimg.com/enabled_hi/564x/5b/fb/c8/5bfbc8ff191f310317c9a0cd19b8e146.jpg",
+                    "https://i.pinimg.com/564x/03/39/34/03393468c89b1b7da49df055b6174a83.jpg",
+                    "https://i.pinimg.com/enabled_hi/564x/5b/fb/c8/5bfbc8ff191f310317c9a0cd19b8e146.jpg"
+                ]
+            },
+            {
+                name: "Data Visualizer",
+                images: [
+                    "https://via.placeholder.com/800x600?text=Data+Visualizer+1",
+                    "https://via.placeholder.com/800x600?text=Data+Visualizer+2",
+                    "https://via.placeholder.com/800x600?text=Data+Visualizer+3"
+                ]
+            },
+            {
+                name: "Web Scraper",
+                images: [
+                    "https://via.placeholder.com/800x600?text=Web+Scraper+1",
+                    "https://via.placeholder.com/800x600?text=Web+Scraper+2",
+                    "https://via.placeholder.com/800x600?text=Web+Scraper+3"
+                ]
+            },
+            {
+                name: "Encryption Tool",
+                images: [
+                    "https://via.placeholder.com/800x600?text=Encryption+Tool+1",
+                    "https://via.placeholder.com/800x600?text=Encryption+Tool+2",
+                    "https://via.placeholder.com/800x600?text=Encryption+Tool+3"
+                ]
+            }
+        ];
+
+        let currentProject = 0;
+        let currentImage = 0;
+
+        function openModal(projectIndex) {
+            currentProject = projectIndex;
+            currentImage = 0;
+            document.getElementById('imageModal').style.display = 'block';
+            document.getElementById('modalImage').src = projects[currentProject].images[currentImage];
+        }
+
+        function closeModal() {
+            document.getElementById('imageModal').style.display = 'none';
+        }
+
+        function changeImage(n) {
+            currentImage += n;
+            const projectImages = projects[currentProject].images;
+            if (currentImage >= projectImages.length) currentImage = 0;
+            if (currentImage < 0) currentImage = projectImages.length - 1;
+            document.getElementById('modalImage').src = projectImages[currentImage];
+        }
+
+        // Close the modal when clicking outside of it
+        window.onclick = function(event) {
+            if (event.target == document.getElementById('imageModal')) {
+                closeModal();
+            }
+        }
+    </script>
+</body>
+</html>

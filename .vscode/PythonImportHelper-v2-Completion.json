@@ -1,0 +1,20 @@
+[
+    {
+        "label": "os",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "os",
+        "description": "os",
+        "detail": "os",
+        "documentation": {}
+    },
+    {
+        "label": "directory",
+        "kind": 5,
+        "importPath": "gdsas",
+        "description": "gdsas",
+        "peekOfCode": "directory = \"project_images/ATS\"\nfor filename in os.listdir(directory):\n    if os.path.isfile(os.path.join(directory, filename)):\n        print(f'\"project_images/ATS/{filename}\",')",
+        "detail": "gdsas",
+        "documentation": {}
+    }
+]
