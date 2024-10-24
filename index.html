@@ -746,12 +746,13 @@
         }
 
         .modal-content {
+            top: 15%;
             position: relative;
             margin: auto;
             padding: 0;
             width: 90%;
             max-width: 1200px;
-            height: 90%;
+            height: fit-content;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -792,6 +793,10 @@
             background-color: rgba(0, 0, 0, 0.8);
         }
 
+        .prev {
+            left: 0;
+        }
+
         .project-description {
             color: var(--text-color);
             font-size: 0.9rem;
@@ -828,6 +833,10 @@
 
             h2 {
                 font-size: 2rem;
+            }
+
+            .modal-content {
+                top: 30%;
             }
         }
 
@@ -874,37 +883,6 @@
             opacity: 1;
         }
     </style>
-
-    <script>
-        function toggleDescription(element) {
-            var description = element.parentElement;
-            var fullText = description.querySelector('.full-text');
-            var shortText = description.querySelector('.short-text');
-
-            // Toggle the class to trigger the height animation
-            description.classList.toggle('expand');
-
-            if (description.classList.contains('expand')) {
-                element.textContent = 'See Less';
-                fullText.style.display = 'inline'; // Make full text visible
-                shortText.style.display = 'none'; // Hide the short text
-            } else {
-                element.textContent = 'See More';
-                fullText.style.display = 'none'; // Hide the full text
-                shortText.style.display = 'inline'; // Show the short text
-            }
-        }
-
-    </script>
-
-    <div id="imageModal" class="modal">
-        <span class="close" onclick="closeModal()">&times;</span>
-        <div class="modal-content">
-            <img id="modalImage" class="modal-image" src="" alt="Project Image">
-            <a class="prev" onclick="changeImage(-1)">&#10094;</a>
-            <a class="next" onclick="changeImage(1)">&#10095;</a>
-        </div>
-    </div>
 
     <script>
         const projects = [
@@ -1017,6 +995,24 @@
         window.onclick = function (event) {
             if (event.target == document.getElementById('imageModal')) {
                 closeModal();
+            }
+        }
+        function toggleDescription(element) {
+            var description = element.parentElement;
+            var fullText = description.querySelector('.full-text');
+            var shortText = description.querySelector('.short-text');
+
+            // Toggle the class to trigger the height animation
+            description.classList.toggle('expand');
+
+            if (description.classList.contains('expand')) {
+                element.textContent = 'See Less';
+                fullText.style.display = 'inline'; // Make full text visible
+                shortText.style.display = 'none'; // Hide the short text
+            } else {
+                element.textContent = 'See More';
+                fullText.style.display = 'none'; // Hide the full text
+                shortText.style.display = 'inline'; // Show the short text
             }
         }
     </script>
