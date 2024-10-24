@@ -157,7 +157,7 @@
                                 <div class="st-text-block-btn">
                                     <a href="assets/img/Md_Ariful_Islam_Software_Engineer_Resume.pdf"
                                         class="st-btn st-style1 st-color1"
-                                        download="Md_Ariful_Islam_Software_Engineer_Resume.pdf">Download CV</a>
+                                        download="Md_Ariful_Islam_Software_Engineer_Resume.pdf">Download Resume</a>
                                 </div>
                             </div>
                         </div>
@@ -519,7 +519,7 @@
                     <div class="project-content">
                         <h3 class="project-title">HR Management</h3>
                         <p class="project-description">
-                            <span class="short-desc">An efficient web scraping tool designed to extract and process
+                            <span class="short-text">An efficient web scraping tool designed to extract and process
                                 large...</span>
                             <span class="full-text" style="display: none;">An efficient web scraping tool designed to
                                 extract and
@@ -1168,12 +1168,35 @@
     </section>
     <!-- End Resume Seciton -->
 
-    <section class="work section" id="work">
-        <!-- <iframe src="assets/img/Md_Ariful_Islam_Software_Engineer_Resume.pdf" width="55%" height="1050px"></iframe> -->
 
-        <iframe src="https://docs.google.com/document/d/1j9488XNqHLd35hil-St3WfmF2mfLV73wBfgwTZ3mh6M/preview"
-            width="40%" height="1050px" style="display: block; margin: auto; background-color: #0a0b1c;"></iframe>
+
+    <section class="work section" id="work">
+        <!-- PDF iframe -->
+        <!-- <iframe id="pdf" src="assets/img/Md_Ariful_Islam_Software_Engineer_Resume.pdf" width="55%" height="1050px" style="display: block; margin: auto; background-color: #0a0b1c;"></iframe> -->
+
+        <!-- Google Doc iframe -->
+
+        <div id="doc" style="text-align: center;">
+            <iframe src="https://docs.google.com/document/d/1j9488XNqHLd35hil-St3WfmF2mfLV73wBfgwTZ3mh6M/preview"
+                width="40%" height="1050px" style="display: block; margin: auto; background-color: #0a0b1c;"></iframe>
+        </div>
+
+        <div class="st-text-block-btn mt-3" style="display: flex; justify-content: center;">
+            <a href="assets/img/Md_Ariful_Islam_Software_Engineer_Resume.pdf" class="st-btn st-style1 st-color1"
+                download="Md_Ariful_Islam_Software_Engineer_Resume.pdf">Download Resume</a>
+        </div>
+
     </section>
+
+    <style>
+        @media only screen and (min-device-width: 10px) and (max-device-width: 1024px) {
+            #doc {
+                display: none;
+            }
+        }
+    </style>
+
+
 
     <!-- Start Portfolio Seciton -->
     <!-- <section id="portfolio">
