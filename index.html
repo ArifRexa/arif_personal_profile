@@ -46,6 +46,7 @@
                                     class="st-btn st-style2 st-color1 st-btn-md st-smooth-move"
                                     download="Md_Ariful_Islam_Software_Engineer_Resume.pdf">Download</a>
                             </div>
+                            
                         </div>
                     </div>
                 </div>
@@ -1341,13 +1342,13 @@
 
                 <div class="st-height-b0 st-height-lg-b30"></div>
 
-                <div class="" style="display: block; margin: auto;">
+                <div class="d-flex flex-wrap justify-content-center align-items-center" >
                     <div class="st-height-b0 st-height-lg-b40"></div>
                     <!-- <h3 class="st-contact-title">Contact Info</h3> -->
-                    <div class="st-contact-text">
+                    <div class="st-contact-text text-center">
                         If you'd like to get in touch, feel free to reach out through any of the following methods:
                     </div>
-                    <div class=" d-flex justify-content-center align-items-center gx-5">
+                    <div class="d-flex flex-wrap justify-content-center align-items-center">
                         <div class="st-single-contact-info">
                             <i class="fas fa-message"></i>
 
@@ -1368,27 +1369,19 @@
                                 <a href="#">mailarif3126@gmail.com</a>
                             </div>
                         </div>
-                        <div class="st-single-contact-info">
+                        <div class="st-single-contact-info phone">
                             <i class="fas fa-phone-alt"></i>
                             <div class="st-single-info-details">
                                 <h4>Phone</h4>
-                                <span>+8801677243126</span>
-                                <span>+8801995652864</span>
-                            </div>
-                        </div>
-                        <div class="st-single-contact-info">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <div class="st-single-info-details">
-                                <h4>Address</h4>
-                                <span>Mirpur 12, Pallabi <br>Dhaka 1216 Bangladesh</span>
+                                <a href="#">+8801677243126 <br> +8801995652864</a>
                             </div>
                         </div>
 
                     </div>
-                    <div class="d-flex justify-content-center align-items-center gx-5 contact-container">
+                    <div class="d-flex flex-wrap justify-content-center align-items-center">
                         <div>
                             <!-- <div class="st-social-text">Visit my social profile and get connected</div> -->
-                            <div class="st-social-link">
+                            <div class="st-social-link d-flex flex-wrap justify-content-center align-items-center">
                                 <a href="https://form.jotform.com/242975702212050" class="st-social-btn active"
                                     target="_blank">
                                     <span class="st-social-icon"><i class="fab fa-dribbble"></i></span>
@@ -1417,60 +1410,16 @@
 
     <style>
         .st-single-contact-info {
-            margin: 0px 20px 20px 0px;
+            margin: 0px 50px 50px 0px;
             /* Adjust this value to control the gap between each item */
         }
-    </style>
 
-    <!-- Add SMTP.js -->
-    <script src="https://smtpjs.com/v3/smtp.js"></script>
-    <script>
-        function sendEmail(event) {
-            event.preventDefault();  // Prevent form submission
-
-            // Collect form data
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const subject = document.getElementById('subject').value;
-            const message = document.getElementById('msg').value;
-
-            // Log form data to check if they are captured
-            console.log('Form data:', { name, email, subject, message });
-
-            // Validate form fields
-            if (name === '' || email === '' || subject === '' || message === '') {
-                document.getElementById('st-alert').innerHTML = '<div class="alert alert-danger">All fields are required.</div>';
-                return;
+        @media only screen and (min-device-width: 10px) and (max-device-width: 1024px) {
+            .phone {
+                margin-left: -42px;
             }
-
-            // Send email using SMTP.js
-            Email.send({
-                SecureToken: "271e1296-a233-4a51-a9ad-23809781fe8d",  // Replace with your token
-                To: 'arif.reza3126@gmail.com',  // Set your email here
-                From: email,
-                Subject: subject,
-                Body: `<h2>New Message from ${name}</h2>
-                   <p><strong>Email:</strong> ${email}</p>
-                   <p><strong>Message:</strong> ${message}</p>`
-            }).then(
-                message => {
-                    document.getElementById('st-alert').innerHTML = '<div class="alert alert-success">Message sent successfully!</div>';
-                    console.log('Email sent:', message);  // Log success
-                    // Optionally clear the form fields
-                    document.getElementById('contact-form').reset();
-                }
-            ).catch(
-                error => {
-                    document.getElementById('st-alert').innerHTML = `<div class="alert alert-danger">Failed to send message. Please try again.</div>`;
-                    console.log('Error:', error);  // Log error
-                }
-            );
         }
-
-    </script>
-
-    <!-- Add form submission logic -->
-
+    </style>
 
     <!-- End Contact Seciton -->
 
